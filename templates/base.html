@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Emergency Care Assist</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="logo">AI Emergency Care Assist</div>
+    {% if session.get('user_name') %}
+      <div class="user-info">Hi, {{ session['user_name'] }}</div>
+    {% endif %}
+  </header>
+
+  {% if session.get('user_id') %}
+  <nav class="nav-bar">
+    <a href="{{ url_for('dashboard') }}">Home</a>
+    <a href="{{ url_for('symptom_checker_page') }}">Symptom Checker</a>
+    <a href="{{ url_for('hospitals') }}">Hospitals</a>
+    <a href="{{ url_for('tips') }}">Tips</a>
+    <a href="{{ url_for('profile') }}">Profile</a>
+    <a href="{{ url_for('history') }}">History</a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+  </nav>
+  {% endif %}
+
+  <main class="content">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-container">
+          {% for m in messages %}
+            <div class="flash">{{ m }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="app-footer">
+    Demo only. Not a replacement for real doctors or emergency services.
+  </footer>
+</body>
+</html>

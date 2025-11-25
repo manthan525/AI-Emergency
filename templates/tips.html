@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Helpful Emergency Tips</h2>
+<div class="grid">
+  {% for t in tips %}
+  <div class="card gradient-blue">
+    <h3>{{ t.title }}</h3>
+    <p>{{ t.text }}</p>
+  </div>
+  {% endfor %}
+</div>
+<p class="disclaimer">
+  These tips are general and do not replace professional medical advice.
+</p>
+{% endblock %}

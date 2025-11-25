@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>History</h2>
+
+<div class="grid">
+  <div class="card">
+    <h3>Recent Symptom Checks</h3>
+    {% if symptoms %}
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>Date &amp; Time</th>
+            <th>Symptoms</th>
+            <th>Risk</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for s in symptoms %}
+          <tr>
+            <td>{{ s.timestamp }}</td>
+            <td>{{ s.symptoms_text }}</td>
+            <td>{{ s.risk_level }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No symptom checks yet.</p>
+    {% endif %}
+  </div>
+
+  <div class="card">
+    <h3>Emergency Actions</h3>
+    {% if actions %}
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>Date &amp; Time</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for a in actions %}
+          <tr>
+            <td>{{ a.timestamp }}</td>
+            <td>{{ a.action_type|capitalize }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No emergency actions yet.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

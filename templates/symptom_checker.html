@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>AI Symptom Checker</h2>
+  <form id="symptom-form">
+    <label>Describe your symptoms</label>
+    <textarea name="symptoms" required></textarea>
+
+    <label>Duration</label>
+    <select name="duration">
+      <option value="<1">Less than 1 day</option>
+      <option value="1-3">1–3 days</option>
+      <option value=">3">More than 3 days</option>
+    </select>
+
+    <label>Severity</label>
+    <select name="severity">
+      <option value="mild">Mild</option>
+      <option value="moderate">Moderate</option>
+      <option value="severe">Severe</option>
+    </select>
+
+    <button type="submit">Check Risk</button>
+  </form>
+
+  <div id="result-card" class="result-card hidden">
+    <h3 id="risk-level"></h3>
+    <p id="risk-message"></p>
+    <p class="disclaimer">
+      This tool is for education only and does not provide a medical diagnosis.
+    </p>
+  </div>
+</div>
+{% endblock %}

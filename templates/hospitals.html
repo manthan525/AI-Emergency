@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Nearby Hospitals</h2>
+<form method="GET" class="filters">
+  <label><input type="checkbox" name="status" value="open" {% if request.args.get('status')=='open' %}checked{% endif %}> Open only</label>
+  <label><input type="checkbox" name="ambulance" value="yes" {% if request.args.get('ambulance')=='yes' %}checked{% endif %}> Ambulance available</label>
+  <button type="submit">Apply</button>
+</form>
+
+<div class="grid">
+  {% for h in hospitals %}
+  <div class="card">
+    <h3>{{ h.name }}</h3>
+    <p>{{ h.address }}</p>
+    <span class="badge status">{{ h.status }}</span>
+    <span class="badge ambulance">{% if h.ambulance_available %}Ambulance{% else %}No Ambulance{% endif %}</span>
+    <p>Contact: {{ h.contact_number }}</p>
+    <button class="outline-btn">View on map (demo)</button>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

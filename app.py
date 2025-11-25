@@ -289,7 +289,8 @@ def history():
     actions = list(emergency_actions_col.find({"user_id": user_id}).sort("timestamp", -1))
     return render_template("history.html", symptoms=symptoms, actions=actions)
 
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Render usually sets this to 10000
+    app.run(host="0.0.0.0", port=port)
+
 
